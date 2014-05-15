@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Python Module Index &mdash; GroupFlow 0.2.0 Pre-Release documentation</title>
+  <title>Development Progress and Known Issues &mdash; GroupFlow 0.2.0 Pre-Release documentation</title>
   
 
   
@@ -30,9 +30,8 @@
 
   
     <link rel="top" title="GroupFlow 0.2.0 Pre-Release documentation" href="index.html"/>
- 
-
-
+        <link rel="next" title="IGMP Manager" href="igmp_manager.html"/>
+        <link rel="prev" title="Installation and Usage" href="install.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -59,16 +58,16 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
         
-            <ul>
+            <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation and Usage</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="install.html#installing-dependencies">Installing Dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="install.html#downloading-groupflow">Downloading GroupFlow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="install.html#usage">Usage</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="issues.html">Development Progress and Known Issues</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="issues.html#current-development-state">Current Development State</a></li>
-<li class="toctree-l2"><a class="reference internal" href="issues.html#known-issues">Known Issues</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Development Progress and Known Issues</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#current-development-state">Current Development State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#known-issues">Known Issues</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="igmp_manager.html">IGMP Manager</a></li>
@@ -99,7 +98,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li></li>
+    <li>Development Progress and Known Issues</li>
       <li class="wy-breadcrumbs-aside">
         
       </li>
@@ -108,53 +107,36 @@
 </div>
           <div role="main">
             
-
-   <h1>Python Module Index</h1>
-
-   <div class="modindex-jumpbox">
-   <a href="#cap-p"><strong>p</strong></a>
-   </div>
-
-   <table class="indextable modindextable" cellspacing="0" cellpadding="2">
-     <tr class="pcap"><td></td><td>&nbsp;</td><td></td></tr>
-     <tr class="cap" id="cap-p"><td></td><td>
-       <strong>p</strong></td><td></td></tr>
-     <tr>
-       <td><img src="_static/minus.png" class="toggler"
-              id="toggle-1" style="display: none" alt="-" /></td>
-       <td>
-       <tt class="xref">pox</tt></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&nbsp;&nbsp;&nbsp;
-       <a href="benchmarking.html#module-pox.misc.benchmark_terminator"><tt class="xref">pox.misc.benchmark_terminator</tt></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&nbsp;&nbsp;&nbsp;
-       <a href="benchmarking.html#module-pox.misc.groupflow_event_tracer"><tt class="xref">pox.misc.groupflow_event_tracer</tt></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&nbsp;&nbsp;&nbsp;
-       <a href="flowtracker.html#module-pox.openflow.flow_tracker"><tt class="xref">pox.openflow.flow_tracker</tt></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&nbsp;&nbsp;&nbsp;
-       <a href="groupflow.html#module-pox.openflow.groupflow"><tt class="xref">pox.openflow.groupflow</tt></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&nbsp;&nbsp;&nbsp;
-       <a href="igmp_manager.html#module-pox.openflow.igmp_manager"><tt class="xref">pox.openflow.igmp_manager</tt></a></td><td>
-       <em></em></td></tr>
-   </table>
+  <div class="section" id="development-progress-and-known-issues">
+<h1>Development Progress and Known Issues<a class="headerlink" href="#development-progress-and-known-issues" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="current-development-state">
+<h2>Current Development State<a class="headerlink" href="#current-development-state" title="Permalink to this headline">¶</a></h2>
+<p>The OpenFlow IGMP v3 controller is now functionally complete, with the following exceptions:</p>
+<ul class="simple">
+<li>The IGMPManager module implements the multicast router component of IGMP v3, but not the multicast host component. This should have no impact on the multicast functionality as long as all routers in the network are under the administrative domain of the same controller, but the lack of the host component on the router may cause issues if routers under a different administrative domain are connected to the network.</li>
+<li>IGMP v1 and v2 compatibility modes are not implemented. IGMPManager The module should only be expected to function correctly in a network composed entirely of IGMP v3 hosts.</li>
+<li>IGMP v3 is not emulated exactly on each router. Instead, all routers in the SDN controller domain are logically considered as a single IGMP router whose ports consist of the set of all ports which do not face adjacent routers. Because of this, IGMP querrier selection mechanisms are not implemented.</li>
+</ul>
+<p>The multicast controller module is now functionally complete, and optionally can make use of traffic estimation provided by the flow tracker module to load balance multicast traffic.</p>
+</div>
+<div class="section" id="known-issues">
+<h2>Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this headline">¶</a></h2>
+<p>Due to limitations in the OpenFlow v1.0 specification, the flow tracker module is not capable of determining the maximum bandwidth associated with a particular link. If load balancing operations is desired, all load balanced links must have the same maximum bandwidth, and this maximum bandwidth must be provided as a command line parameter.</p>
+</div>
+</div>
 
 
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="igmp_manager.html" class="btn btn-neutral float-right" title="IGMP Manager">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="install.html" class="btn btn-neutral" title="Installation and Usage"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

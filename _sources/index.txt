@@ -24,6 +24,7 @@ Contents:
    :maxdepth: 2
    
    install.rst
+   issues.rst
    igmp_manager.rst
    groupflow.rst
    flowtracker.rst
