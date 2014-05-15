@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>GroupFlow API Documentation &mdash; GroupFlow 0.2.0 Pre-Release documentation</title>
+  <title>GroupFlow: Multicast Routing in Software Defined Networks &mdash; GroupFlow 0.2.0 Pre-Release documentation</title>
   
 
   
@@ -30,7 +30,7 @@
 
   
     <link rel="top" title="GroupFlow 0.2.0 Pre-Release documentation" href="#"/>
-        <link rel="next" title="IGMP Manager" href="igmp_manager.html"/> 
+        <link rel="next" title="Installation and Usage" href="install.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -58,6 +58,12 @@
         
         
             <ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation and Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#installing-dependencies">Installing Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#downloading-groupflow">Downloading GroupFlow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#usage">Usage</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="igmp_manager.html">IGMP Manager</a></li>
 <li class="toctree-l1"><a class="reference internal" href="groupflow.html">GroupFlow Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="flowtracker.html">FlowTracker Module</a></li>
@@ -86,7 +92,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="#">Docs</a> &raquo;</li>
       
-    <li>GroupFlow API Documentation</li>
+    <li>GroupFlow: Multicast Routing in Software Defined Networks</li>
       <li class="wy-breadcrumbs-aside">
         
       </li>
@@ -95,11 +101,32 @@
 </div>
           <div role="main">
             
-  <div class="section" id="groupflow-api-documentation">
-<h1>GroupFlow API Documentation<a class="headerlink" href="#groupflow-api-documentation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="groupflow-multicast-routing-in-software-defined-networks">
+<h1>GroupFlow: Multicast Routing in Software Defined Networks<a class="headerlink" href="#groupflow-multicast-routing-in-software-defined-networks" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body"><a class="reference external" href="https://github.com/alexcraig">Alexander Craig</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">License:</th><td class="field-body">This software is licensed under the
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License, Version 2.0</a>.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This project aims to create a POX fork/extension of the NOX-Classic Castflow implementation, supplemented with full IGMP v3 support implemented in the controller. This will allow SDN multicast proposals to be deployed in a live OpenFlow SDN network with standard IGMPv3 hosts. The end goal of this project is to provide a testbed for developers aiming to test new multicast ideas in a software defined network.</p>
+<img alt="_images/GroupflowDeploymentDiagram.png" src="_images/GroupflowDeploymentDiagram.png" />
 <p>Contents:</p>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation and Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#installing-dependencies">Installing Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#downloading-groupflow">Downloading GroupFlow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#usage">Usage</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="igmp_manager.html">IGMP Manager</a></li>
 <li class="toctree-l1"><a class="reference internal" href="groupflow.html">GroupFlow Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="flowtracker.html">FlowTracker Module</a></li>
@@ -109,12 +136,13 @@
 </div>
 </div>
 <div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
 <li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
 <li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
 </ul>
+</div>
 </div>
 
 
@@ -123,7 +151,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="igmp_manager.html" class="btn btn-neutral float-right" title="IGMP Manager">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="install.html" class="btn btn-neutral float-right" title="Installation and Usage">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>
