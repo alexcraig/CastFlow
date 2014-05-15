@@ -2,7 +2,7 @@ Development Progress and Known Issues
 =====================================
 
 Current Development State
-~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------
 
 The OpenFlow IGMP v3 controller is now functionally complete, with the following exceptions:
 
@@ -15,7 +15,7 @@ The OpenFlow IGMP v3 controller is now functionally complete, with the following
 The multicast controller module is now functionally complete, and optionally can make use of traffic estimation provided by the flow tracker module to load balance multicast traffic.
 
 Known Issues
-~~~~~~~~~~~~
+------------
 
 Due to limitations in the OpenFlow v1.0 specification, the flow tracker module is not capable of determining the maximum bandwidth associated with a particular link. If load balancing operations is desired, all load balanced links must have the same maximum bandwidth, and this maximum bandwidth must be provided as a command line parameter.
 

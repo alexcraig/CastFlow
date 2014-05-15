@@ -25,11 +25,7 @@ Contents:
    
    install.rst
    issues.rst
-   igmp_manager.rst
-   groupflow.rst
-   flowtracker.rst
-   benchmarking.rst
-   
+   module_api.rst
 
 Indices and tables
 ==================
