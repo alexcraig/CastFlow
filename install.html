@@ -131,8 +131,11 @@
 <div class="highlight-python"><pre>pox.py openflow.discovery openflow.flow_tracker --query_interval=1 --link_max_bw=30 --link_cong_threshold=30 --avg_smooth_factor=0.65 --log_peak_usage=True openflow.igmp_manager openflow.groupflow --util_link_weight=10 --link_weight_type=linear log.level --WARNING --openflow.flow_tracker=INFO --openflow.igmp_manager=DEBUG</pre>
 </div>
 <p>For more details on optional command line arguments, please see the API documentation for the relevant modules.</p>
-<p>The modules can be tested with the provided Mininet automation script, which will generate a simple topology and manage the launch of POX with GroupFlow modules enabled (using default settings). Note that as this script invoke Mininet, it must be run as root. For example:</p>
+<p>The modules can be tested with the provided Mininet automation script, which will generate a simple topology and manage the launch of POX with GroupFlow modules enabled (using default settings). Note that as this script invokes Mininet, it must be run as root. For example:</p>
 <div class="highlight-python"><pre>./sudo python mininet_multicast_pox.py</pre>
+</div>
+<p>The provided test scripts require the <tt class="docutils literal"><span class="pre">pox</span></tt> executable to be located somewhere on the system path. If you&#8217;ve installed GroupFlow on the Mininet provided VM image using the standard POX install path, you can do this by running the following command:</p>
+<div class="highlight-python"><pre>export PATH=$PATH:/home/mininet/pox</pre>
 </div>
 </div>
 </div>
