@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Module API and Detailed Documentation &mdash; GroupFlow 0.2.0 Pre-Release documentation</title>
+  <title>Module API and Detailed Documentation &mdash; GroupFlow 0.2.0 Pre-Release (f9a6c261ef13630da56afacedaf304d939582f81) documentation</title>
   
 
   
@@ -29,7 +29,7 @@
   
 
   
-    <link rel="top" title="GroupFlow 0.2.0 Pre-Release documentation" href="index.html"/>
+    <link rel="top" title="GroupFlow 0.2.0 Pre-Release (f9a6c261ef13630da56afacedaf304d939582f81) documentation" href="index.html"/>
         <link rel="prev" title="Development Progress and Known Issues" href="issues.html"/> 
 
   
@@ -484,12 +484,6 @@ bandwidth utilization on a per-flow basis.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pox.openflow.groupflow.MulticastPath.handle_topology_change">
-<tt class="descname">handle_topology_change</tt><big>(</big><em>groupflow_trace_event=None</em><big>)</big><a class="headerlink" href="#pox.openflow.groupflow.MulticastPath.handle_topology_change" title="Permalink to this definition">¶</a></dt>
-<dd><p>Handles topology changes by recalculating the cached shortest path tree, and installing new OpenFlow rules.</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="pox.openflow.groupflow.MulticastPath.install_openflow_rules">
 <tt class="descname">install_openflow_rules</tt><big>(</big><em>groupflow_trace_event=None</em><big>)</big><a class="headerlink" href="#pox.openflow.groupflow.MulticastPath.install_openflow_rules" title="Permalink to this definition">¶</a></dt>
 <dd><p>Selects routes for active receivers from the cached shortest path tree, and installs/removes OpenFlow rules accordingly.</p>
@@ -500,6 +494,12 @@ bandwidth utilization on a per-flow basis.</p>
 <tt class="descname">remove_openflow_rules</tt><big>(</big><big>)</big><a class="headerlink" href="#pox.openflow.groupflow.MulticastPath.remove_openflow_rules" title="Permalink to this definition">¶</a></dt>
 <dd><p>Removes all OpenFlow rules associated with this multicast group / sender pair.</p>
 <p>This should be used when the group has no active receivers.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pox.openflow.groupflow.MulticastPath.update_flow_placement">
+<tt class="descname">update_flow_placement</tt><big>(</big><em>groupflow_trace_event=None</em><big>)</big><a class="headerlink" href="#pox.openflow.groupflow.MulticastPath.update_flow_placement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replaces the existing flows by recalculating the cached shortest path tree, and installing new OpenFlow rules.</p>
 </dd></dl>
 
 </dd></dl>
@@ -648,6 +648,24 @@ flow stats will be returned.</p>
 <p>This function is typically called by the BenchmarkTerminator module.</p>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="class">
+<dt id="pox.openflow.flow_tracker.LinkUtilizationEvent">
+<em class="property">class </em><tt class="descclassname">pox.openflow.flow_tracker.</tt><tt class="descname">LinkUtilizationEvent</tt><big>(</big><em>router_dpid</em>, <em>output_port</em>, <em>link_utilization</em>, <em>flow_map</em><big>)</big><a class="headerlink" href="#pox.openflow.flow_tracker.LinkUtilizationEvent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Event which reports link status in the event of link congestion, or under under other conditions (TBD).</p>
+<p>This class contains the following public attributes:</p>
+<ul class="simple">
+<li>router_dpid: The egress router of the link on which status is being reported</li>
+<li>output_port: The output port of the link on which status is being reported</li>
+<li>link_utilization: The normalized utilization of the link, as determined from PortStats on the ingress router.
+If port stats are not available on the ingress router, the normalized utilization as determined from the
+egress router ports tats will be included instead)</li>
+<li>flow_map: A map of normalized bandwidth utilizations keyed by flow_cookie. This should be used to determine
+which flows should be replaced.</li>
+</ul>
+<div class="highlight-python"><pre>flow_map[flow_cookie] = normalized bandwidth of flow with flow cookie flow_cookie</pre>
+</div>
 </dd></dl>
 
 </div>
@@ -894,7 +912,7 @@ entirely.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'',
-            VERSION:'0.2.0 Pre-Release',
+            VERSION:'0.2.0 Pre-Release (f9a6c261ef13630da56afacedaf304d939582f81)',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
