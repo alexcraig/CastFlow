@@ -435,13 +435,25 @@ Default: 1</li>
 traffic state to be more heavily weighted in routing (relative to the network topology). Note that setting this to 0 with either link
 weight type will produce shortest cost trees in terms of number of hops only.
 Default: 10</li>
+<li>flow_replacement_mode: Determines the manner in which replacement of existing flows is triggered. Supported options:
+&#8216;none&#8217;: Existing flows are never replaced.
+&#8216;periodic&#8217;: Existing flows are periodically replaced.
+&#8216;cong_threshold&#8217;: In this mode, flow replacement is triggered by the FlowTracker module reporting congestion on a link traversed by the flow.
+Upon receiving a LinkUtilizationEvent, the GroupFlow module will attempt to replace the largest flows traversing the link until the link is
+brought back under its congestion threshold.
+Default: &#8216;none&#8217;</li>
+<li>flow_replacement_interval: Determines the flow replacement interval in a mode specific fashion (always specified in seconds): 
+&#8216;none&#8217;: Has no effect
+&#8216;periodic&#8217;: Sets the periodic interval at which flows are replaced.
+&#8216;cong_threshold&#8217;: Sets the minimum interval that must elapse after flow placement, before the flow can be replaced.
+Default: 10</li>
 </ul>
 <p>Depends on openflow.igmp_manager, misc.groupflow_event_tracer (optional)</p>
 <p>Created on July 16, 2013</p>
 <p>Author: Alexander Craig - <a class="reference external" href="mailto:alexcraig1&#37;&#52;&#48;gmail&#46;com">alexcraig1<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
 <dl class="class">
 <dt id="pox.openflow.groupflow.GroupFlowManager">
-<em class="property">class </em><tt class="descclassname">pox.openflow.groupflow.</tt><tt class="descname">GroupFlowManager</tt><big>(</big><em>link_weight_type</em>, <em>static_link_weight</em>, <em>util_link_weight</em><big>)</big><a class="headerlink" href="#pox.openflow.groupflow.GroupFlowManager" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">pox.openflow.groupflow.</tt><tt class="descname">GroupFlowManager</tt><big>(</big><em>link_weight_type</em>, <em>static_link_weight</em>, <em>util_link_weight</em>, <em>flow_replacement_mode</em>, <em>flow_replacement_interval</em><big>)</big><a class="headerlink" href="#pox.openflow.groupflow.GroupFlowManager" title="Permalink to this definition">¶</a></dt>
 <dd><p>The GroupFlowManager implements multicast routing for OpenFlow networks.</p>
 <dl class="method">
 <dt id="pox.openflow.groupflow.GroupFlowManager.drop_packet">
@@ -652,15 +664,17 @@ flow stats will be returned.</p>
 
 <dl class="class">
 <dt id="pox.openflow.flow_tracker.LinkUtilizationEvent">
-<em class="property">class </em><tt class="descclassname">pox.openflow.flow_tracker.</tt><tt class="descname">LinkUtilizationEvent</tt><big>(</big><em>router_dpid</em>, <em>output_port</em>, <em>link_utilization</em>, <em>flow_map</em><big>)</big><a class="headerlink" href="#pox.openflow.flow_tracker.LinkUtilizationEvent" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">pox.openflow.flow_tracker.</tt><tt class="descname">LinkUtilizationEvent</tt><big>(</big><em>router_dpid</em>, <em>output_port</em>, <em>cong_threshold</em>, <em>link_utilization</em>, <em>stats_type</em>, <em>flow_map</em><big>)</big><a class="headerlink" href="#pox.openflow.flow_tracker.LinkUtilizationEvent" title="Permalink to this definition">¶</a></dt>
 <dd><p>Event which reports link status in the event of link congestion, or under under other conditions (TBD).</p>
 <p>This class contains the following public attributes:</p>
 <ul class="simple">
 <li>router_dpid: The egress router of the link on which status is being reported</li>
 <li>output_port: The output port of the link on which status is being reported</li>
-<li>link_utilization: The normalized utilization of the link, as determined from PortStats on the ingress router.
-If port stats are not available on the ingress router, the normalized utilization as determined from the
-egress router ports tats will be included instead)</li>
+<li>cong_threshold: The flow tracker&#8217;s congestion threshold (in Mbps)</li>
+<li>link_utilization: The utilization (in Mbps) of the link, as determined from PortStats on the ingress router.
+If port stats are not available on the ingress router, the utilization as determined from the
+egress router ports stats will be included instead.</li>
+<li>stats_type: One of FLOW_STATS (0) or PORT_STATS (1). Records which type of stats reception triggered this event.</li>
 <li>flow_map: A map of normalized bandwidth utilizations keyed by flow_cookie. This should be used to determine
 which flows should be replaced.</li>
 </ul>
